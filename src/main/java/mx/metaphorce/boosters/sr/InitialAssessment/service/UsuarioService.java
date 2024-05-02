@@ -1,13 +1,12 @@
 package mx.metaphorce.boosters.sr.InitialAssessment.service;
 
+import lombok.extern.slf4j.Slf4j;
 import mx.metaphorce.boosters.sr.InitialAssessment.dao.IUsuarioDAO;
 import mx.metaphorce.boosters.sr.InitialAssessment.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
+@Slf4j
 @Service
 public class UsuarioService {
 
@@ -21,6 +20,7 @@ public class UsuarioService {
      * @return Usuario
      */
     public Usuario save(Usuario usuario) {
+        log.info(String.format("Guardando usuario: %s", usuario));
         return usuarioDAO.save(usuario);
     }
 
@@ -30,6 +30,7 @@ public class UsuarioService {
      * @return Usuario
      */
     public Usuario getById(Long id) {
+        log.info(String.format("Obteniendo usuario por id: %s", id));
         return usuarioDAO.findById(id).orElse(null);
     }
 
@@ -39,9 +40,12 @@ public class UsuarioService {
      * @return Usuario
      */
     public Usuario update(Usuario usuario) {
+        log.info(String.format("Actualizando usuario: %s", usuario));
         if (usuarioDAO.existsById(usuario.getIdUsuario())) {
             return usuarioDAO.save(usuario);
         }
+
+        log.info(String.format("El usuario con id %s no existe", usuario.getIdUsuario()));
         return null;
     }
 
@@ -50,6 +54,7 @@ public class UsuarioService {
      * @param id - id
      */
     public void delete(Long id) {
+        log.info(String.format("Eliminando usuario por id: %s", id));
         usuarioDAO.deleteById(id);
     }
 
@@ -58,6 +63,7 @@ public class UsuarioService {
      * @return Iterable<Usuario>
      */
     public Iterable<Usuario> getAll() {
+        log.info("Obteniendo todos los usuarios");
         return usuarioDAO.findAll();
     }
 }

@@ -1,32 +1,31 @@
 package mx.metaphorce.boosters.sr.InitialAssessment.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
     /** Id de usuario */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUsuario;
 
     /** Nombre de usuario */
-    @Column(name = "nombreUsuario")
+    @Column(name = "nombreUsuario", nullable = false, unique = true)
     private String nombreUsuario;
 
     /** Contrasenia */
-    @Column(name = "contrasenia")
+    @Column(name = "contrasenia", nullable = false)
     private String contrasenia;
 
     /** Rol */
-    @Column(name = "rol")
+    @Column(name = "rol", nullable = false)
     private String rol;
 
 }
