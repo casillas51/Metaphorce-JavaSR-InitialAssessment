@@ -1,4 +1,4 @@
-package mx.metaphorce.boosters.sr.InitialAssessment;
+package mx.metaphorce.boosters.sr.InitialAssessment.init;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
